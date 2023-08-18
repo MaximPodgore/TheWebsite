@@ -1,0 +1,24 @@
+
+
+<form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()" novalidate>
+ 
+    <p>
+      <label for="firstname">First Name </label>
+      <input type="text" id="firstname" name="firstname" formControlName="firstname">
+    </p>
+   
+    <p>
+      <label for="lastname">Last Name </label>
+      <input type="text" id="lastname" name="lastname" formControlName="lastname">
+    </p>
+   
+    <p>
+      <label for="email">Email </label>
+      <input type="text" id="email" name="email" formControlName="email">
+    </p>
+     
+    <p>
+      <button type="submit">Submit</button>
+    </p>
+   
+  </form>
