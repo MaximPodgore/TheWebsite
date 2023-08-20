@@ -1,20 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-email-editor',
   templateUrl: './email-editor.component.html',
   styleUrls: ['../../styles.css'],
 })
-export class EmailEditorComponent {
-  reactiveForm = new FormGroup({
-    firstname: new FormControl(""),
-    lastname: new FormControl(""),
-    email: new FormControl(""),
-    message: new FormControl(""),
-  })
+export class EmailEditorComponent implements OnInit {
+  contact : {name:any, description:any, email:any} = {name: "", description: "", email: ""};
 
-  onSubmit(): void {
-    console.log(this.reactiveForm);
+  constructor(public dataService: DataService) { }
+
+  ngOnInit() {
+  }
+
+  createContact(){
+    console.log(this.contact);
+    this.dataService.createContact(this.contact);
+    this.contact = {name: "", description: "", email: ""};
+
   }
 }
