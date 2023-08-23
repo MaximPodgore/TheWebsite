@@ -1,24 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DataService } from '../data.service';
-
+import {Router} from '@angular/router';
+import { EmailService } from './email.service';
+import { Email } from './email-editor';
 @Component({
   selector: 'app-email-editor',
   templateUrl: './email-editor.component.html',
   styleUrls: ['../../styles.css'],
 })
 export class EmailEditorComponent implements OnInit {
-  contact : {name:any, description:any, email:any} = {name: "", description: "", email: ""};
+  statusMessage: string;
+  email = new Email();
 
-  constructor(public dataService: DataService) { }
+  constructor(private _emailService: EmailService,
+    private _router: Router){}
 
   ngOnInit() {
   }
 
-  createContact(){
-    console.log(this.contact);
-    this.dataService.createContact(this.contact);
-    this.contact = {name: "", description: "", email: ""};
-
+  addBook(): void{
+    this._emailService.addEmail(this.email)
   }
+
+  
 }
