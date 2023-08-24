@@ -4,9 +4,12 @@ import { Observable, throwError} from 'rxjs';
 import {map, catchError} from'rxjs/operators';
 import {Email} from './email-editor';
 
-const httpOptions = {
+const httpOptions : any    = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'})
+    'Content-Type':  'application/json',
+    //"Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+    //"Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
+  })
 };
 
 @Injectable({
@@ -24,7 +27,14 @@ export class EmailService {
   addEmail(email: Email) {
     let body = JSON.parse(JSON.stringify({name: email.name, email: email.email, message: email.message}));
     console.log(body);
-    return this.http.post("http://localhost:8080/spring-mvc-restfull-crud-example/email/", body, httpOptions);
+    return this.http.post("http://localhost:8080/spring-mvc-restfull-crud-example/email/", body, httpOptions)
+    .subscribe(data => {
+      console.log(data);
+    },
+    err => {
+      throw err;
+    }
+    );
 
   }
 
