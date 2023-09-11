@@ -1,12 +1,12 @@
 {
   "hosting": {
-    "source": ".",
+    "source": "/my-app/",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "predeploy": "ng build",
+    "predeploy": "ng build --prod",
     "frameworksBackend": {
       "region": "us-west1"
     }
